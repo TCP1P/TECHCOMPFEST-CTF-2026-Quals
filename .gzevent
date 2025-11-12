@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/gzcli/refs/heads/master/internal/template/templates/others/ctf-template/.gzctf/gzevent.schema.yaml
+title: "TECHCOMPFEST CTF 2026 Quals"
+start: "2025-11-27T23:00:00+08:00"
+end: "2025-11-27T23:00:00+08:00"
+poster: "../../.gzctf/favicon.ico"
+hidden: false
+summary: "example summary"
+content: |
+  ...
+acceptWithoutReview: false
+inviteCode: ""
+organizations:
+  - "Miku fans club"
+teamMemberCountLimit: 0
+containerCountLimit: 3
+practiceMode: true
+writeupRequired: false
+writeupDeadline: "2025-01-01T00:00:00+00:00"
+writeupNote: "Bikin writeup ya!"
+bloodBonus: 0
