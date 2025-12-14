@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/ctfify/refs/heads/master/function/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "mosquito"
+author: "keii"
+description: |
+  <img src="https://ctf.korpstar-poltekssn.org/files/979abb386398633229b89dd5b20622cc/desc.png" alt="desc" />
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{kata_masfir_bosen_ransomware_00efdd8bcd}"
+
+provide: "./dist"

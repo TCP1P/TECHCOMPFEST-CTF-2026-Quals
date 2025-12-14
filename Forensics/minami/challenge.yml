@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/ctfify/refs/heads/master/function/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "minami"
+author: "keii"
+description: |
+  my image is full of logic, my wife is full of love
+  but its kinda broken, help me 
+  
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{fix_the_disk_please?_00efbcdd8b}"
+
+provide: "./dist"
