@@ -1,0 +1,243 @@
+/* Sharp comic-like background */
+.persona-bg {
+  background-image: url("bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.persona-bg-alt {
+  background-image: url("bg2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+#urlInput {
+  background-color: #000;
+  color: #fff;
+  border: 4px solid #ff0000;
+  border-radius: 0;
+  font-family: "Impact", "Arial Black", sans-serif;
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  box-shadow: inset -3px 3px 0 #ff0000, -5px 5px 0 #000;
+  outline: none;
+  /* transition: all 0.15s ease-in-out; */
+  /* animation: inputBounce 0.6s ease-out; */
+}
+
+#urlInput:focus {
+  background-color: #111;
+  border-color: #cc0000;
+  box-shadow: inset -2px 2px 0 #cc0000, -4px 4px 0 #000;
+  /* animation: inputWiggle 0.3s ease-in-out; */
+}
+
+.persona-fake-input {
+  background-color: #000;
+  color: #fff;
+  border: 4px solid #ff0000;
+  border-radius: 0;
+  font-family: "Impact", "Arial Black", sans-serif;
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  box-shadow: inset -3px 3px 0 #ff0000, -5px 5px 0 #000;
+  /* transition: all 0.15s ease-in-out; */
+  caret-color: #fff;
+}
+
+.persona-fake-input:focus {
+  background-color: #111;
+  border-color: #cc0000;
+  box-shadow: inset -2px 2px 0 #cc0000, -4px 4px 0 #000;
+  /* animation: inputWiggle 0.3s ease-in-out; */
+}
+
+/* Persona-styled title */
+.persona-title {
+  font-family: "Impact", "Arial Black", sans-serif;
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 3px 3px 0 #ff0000, -2px -2px 0 #000;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Persona 5 button style (overriding Bootstrap .btn) */
+.persona-btn {
+  background-color: #ff0000;
+  color: #fff;
+  font-family: "Impact", "Arial Black", sans-serif;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  border: 4px solid #000;
+  border-radius: 0 !important;
+  box-shadow: -5px 5px 0 #000;
+  padding: 0.75rem 2rem;
+  transition: all 0.15s ease;
+}
+
+.persona-btn:hover {
+  background-color: #cc0000;
+  transform: translate(-2px, 2px);
+  box-shadow: -3px 3px 0 #000;
+}
+.emoji-char-box {
+  display: inline-block;
+  white-space: pre-line;
+  text-align: center;
+  padding: 6px;
+  margin: 6px;
+  font-family: monospace;
+  background: #000;
+  color: #fff;
+  border: 2px solid #ff0000;
+  position: relative;
+}
+
+.emoji-char-box::before,
+.emoji-char-box::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.emoji-char-box::before {
+  top: 0;
+  background: rgba(255, 0, 0, 0.15);
+  border-bottom: 1px solid #ff0000;
+}
+
+.emoji-char-box::after {
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #ff0000;
+}
+
+.emoji-char-box span {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+/* Persona note pad styling */
+.persona-note {
+  border: 3px solid #ff0000;
+  border-radius: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(30, 0, 0, 0.85));
+  padding: 1rem 1.25rem;
+  box-shadow: -5px 5px 0 #000;
+  animation: playerPop 0.5s ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.persona-note label {
+  font-family: "Impact", "Arial Black", sans-serif;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 #ff0000;
+}
+
+.persona-note-quote {
+  margin: 0;
+  color: #fff;
+  font-family: "Impact", "Arial Black", sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.persona-note-quote::before {
+  content: "❝";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ff0000;
+}
+
+.persona-note-author {
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: #ffb3b3;
+  text-transform: uppercase;
+}
+
+.note-bottom-left {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: min(90vw, 320px);
+}
+
+/* Bounce in animation */
+@keyframes playerPop {
+  0% {
+    transform: scale(0.8) translateY(30px);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05) translateY(-5px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+#statusModal .modal-content {
+  background: #111;
+  border: 4px solid #ff0000;
+  box-shadow: -6px 6px 0 #000;
+  font-family: "Impact", "Arial Black", sans-serif;
+  text-transform: uppercase;
+}
+
+#statusModal .modal-title {
+  letter-spacing: 2px;
+  font-size: 1.25rem;
+}
+
+#statusModal .modal-body p {
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.progress {
+  height: 20px;
+  background-color: #222;
+  border: 2px solid #ff0000;
+  border-radius: 0;
+  box-shadow: inset -3px 3px 0 #000;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: linear-gradient(45deg, #ff0000, #cc0000);
+  color: white;
+  font-weight: bold;
+  font-family: "Impact", "Arial Black", sans-serif;
+  text-shadow: 1px 1px 0 #000;
+  animation: champlooStripes 1s linear infinite;
+  box-shadow: -3px 3px 0 #000;
+}
+
+@keyframes champlooStripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 0;
+  }
+}

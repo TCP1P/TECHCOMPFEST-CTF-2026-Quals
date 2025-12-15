@@ -1,0 +1,211 @@
+---
+export const prerender = false;
+import Notes from '../../layouts/Notes.astro';
+import Comments from '../../layouts/Comments.astro';
+import { apiBackend } from '../../consts';
+import { getSessionCookie } from '../../middleware';
+
+type CommentDetail = {
+	id: string;
+	content: string;
+	author?: string;
+	createdAt?: Date | null;
+};
+
+type NoteDetail = {
+	id: string;
+	title: string;
+	description: string;
+	content?: string;
+	date?: Date | null;
+	heroImage?: string | null;
+	comments?: CommentDetail[];
+};
+
+const slugParam = Astro.params.slug;
+const slugSegments = Array.isArray(slugParam)
+	? slugParam
+	: slugParam
+		? [slugParam]
+		: [];
+
+const normalizedRequestedId = slugSegments
+	.map((segment) => (typeof segment === 'string' ? segment.trim() : ''))
+	.filter(Boolean)
+	.join('/');
+
+const cookieValue = getSessionCookie(Astro.request.headers.get('cookie'));
+let note: NoteDetail | null = null;
+let statusMessage: { kind: 'error' | 'info'; text: string } | null = null;
+
+const normalizeId = (value: unknown) =>
+	typeof value === 'number'
+		? value.toString()
+		: typeof value === 'string'
+			? value.trim()
+			: '';
+
+const toComment = (item: Record<string, unknown>): CommentDetail | null => {
+	const id = normalizeId(item.id ?? item._id ?? item.commentId);
+	if (!id) return null;
+
+	const body =
+		typeof item.text === 'string' && item.text.trim()
+			? item.text.trim()
+			: typeof item.content === 'string' && item.content.trim()
+				? item.content.trim()
+				: '';
+	if (!body) return null;
+
+	const comment: CommentDetail = { id, content: body };
+
+	const user = item.user;
+	if (user && typeof user === 'object') {
+		const userRecord = user as Record<string, unknown>;
+		const author =
+			typeof userRecord.name === 'string' && userRecord.name.trim()
+				? userRecord.name.trim()
+				: typeof userRecord.email === 'string' && userRecord.email.trim()
+					? userRecord.email.trim()
+					: '';
+		if (author) comment.author = author;
+	}
+
+	const createdAt = item.createdAt;
+	if (typeof createdAt === 'string' && createdAt.trim()) {
+		const parsed = new Date(createdAt);
+		if (!Number.isNaN(parsed.valueOf())) {
+			comment.createdAt = parsed;
+		}
+	}
+
+	return comment;
+};
+
+const toNote = (item: Record<string, unknown>): NoteDetail | null => {
+	const id = normalizeId(item.id ?? item._id ?? item.slug);
+	if (!id) return null;
+
+	const title =
+		typeof item.title === 'string' && item.title.trim() ? item.title : 'Untitled note';
+	const description =
+		typeof item.description === 'string' && item.description.trim()
+			? item.description
+			: 'No description provided.';
+
+	const detail: NoteDetail = { id, title, description };
+
+	if (typeof item.content === 'string' && item.content.trim()) {
+		detail.content = item.content;
+	}
+
+	const dateString =
+		(typeof item.updatedAt === 'string' && item.updatedAt) ||
+		(typeof item.createdAt === 'string' && item.createdAt);
+	if (dateString) {
+		const parsed = new Date(dateString);
+		if (!Number.isNaN(parsed.valueOf())) {
+			detail.date = parsed;
+		}
+	}
+
+	if (typeof item.heroImage === 'string' && item.heroImage.trim()) {
+		detail.heroImage = item.heroImage.trim();
+	}
+
+	if (Array.isArray(item.comments)) {
+		const parsedComments = item.comments
+			.map((comment) =>
+				comment && typeof comment === 'object'
+					? toComment(comment as Record<string, unknown>)
+					: null,
+			)
+			.filter(Boolean) as CommentDetail[];
+		if (parsedComments.length) {
+			detail.comments = parsedComments;
+		}
+	}
+	return detail;
+};
+
+if (!normalizedRequestedId) {
+	statusMessage = { kind: 'error', text: 'Invalid note identifier.' };
+} else if (!cookieValue) {
+	statusMessage = { kind: 'info', text: 'Sign in to view this note.' };
+} else {
+	try {
+		const response = await fetch(`${apiBackend}/notes/get-my-notes`, {
+			headers: {
+				Authorization: `Bearer ${cookieValue}`,
+				Accept: 'application/json',
+			},
+		});
+		const payload = await response.json().catch(() => null);
+
+		if (!response.ok) {
+			const message =
+				typeof payload?.message === 'string' && payload.message.trim()
+					? payload.message
+					: 'Failed to load this note.';
+			statusMessage = { kind: 'error', text: message };
+		} else {
+			const rawNotes =
+				Array.isArray(payload?.payload)
+					? payload.payload
+					: Array.isArray(payload?.notes)
+						? payload.notes
+						: Array.isArray(payload)
+							? payload
+							: [];
+
+			note = rawNotes
+				.map((item: Record<string, unknown>) => toNote(item))
+				.find((value: NoteDetail | null) => value?.id === normalizedRequestedId) ?? null;
+
+			if (!note) {
+				statusMessage = { kind: 'info', text: 'Note not found or unavailable.' };
+			}
+		}
+	} catch (error) {
+		console.error('Note fetch failed:', error);
+		statusMessage = { kind: 'error', text: 'Unable to reach the notes service.' };
+	}
+}
+
+const fillDate = note?.date ?? new Date();
+const blogData = {
+	title: note?.title ?? 'Note',
+	description: note?.description ?? statusMessage?.text ?? 'Unable to load this note.',
+	pubDate: fillDate,
+	updatedDate: note?.date ?? fillDate,
+	heroImage: note?.heroImage,
+};
+const commentSlug = normalizedRequestedId || 'general';
+const commentsForSlug = note?.comments ?? [];
+const numericNoteId = note ? Number(note.id) : NaN;
+const canSubmitComment = !!cookieValue && Number.isFinite(numericNoteId);
+const submitAction = canSubmitComment ? '/api/comment' : null;
+const noteBody = note && typeof note.content === 'string' && note.content.trim()
+	? note.content
+	: null;
+---
+
+<Notes {...blogData}>
+	{statusMessage && <p class={`status ${statusMessage.kind}`}>{statusMessage.text}</p>}
+	{note ? (
+		<>
+			{noteBody ? (
+				<div class="note-body" set:html={noteBody} />
+			) : (
+				<p class="note-body">No content available.</p>
+			)}
+		</>
+	) : null}
+	<Comments
+		slot="comments"
+		slug={commentSlug}
+		notes={commentsForSlug}
+		noteId={Number.isFinite(numericNoteId) ? numericNoteId : null}
+		submitAction={submitAction}
+	/>
+</Notes>

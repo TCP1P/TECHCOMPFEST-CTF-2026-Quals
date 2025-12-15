@@ -1,0 +1,157 @@
+version: "3.8"
+
+x-deploy-priority: &deploy_priority
+  restart_policy:
+    condition: on-failure
+  resources:
+    limits:
+      cpus: "2.0"
+      memory: 4G
+    reservations:
+      cpus: "2.0"
+      memory: 3G
+  update_config:
+    parallelism: 1
+    order: start-first
+
+x-deploy-common: &deploy_common
+  restart_policy:
+    condition: on-failure
+  resources:
+    limits:
+      cpus: "1.0" 
+      memory: 256M
+    reservations:
+      cpus: "0.50"
+      memory: 128M
+  update_config:
+    parallelism: 1
+    order: start-first
+
+services:
+  proxy:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    deploy: *deploy_common
+    ports:
+      - target: 2937
+        published: 2937
+        protocol: tcp
+        mode: host
+    networks: [internal]
+    depends_on: [bot, frontend, mission-control-system]
+    ulimits:
+      nofile: { soft: 1024, hard: 2048 }
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:1889/"]
+      interval: 2s
+      timeout: 3s
+      retries: 3
+      start_period: 0s
+  
+  db:
+    image: postgres:16-alpine
+    container_name: super-revenge-db
+    deploy: *deploy_common
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: superrevenge
+      POSTGRES_PASSWORD: superrevengepass
+      POSTGRES_DB: superrevenge
+    networks: [internal]
+    volumes:
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgs:/var/lib/postgresql/data
+
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U superrevenge -d superrevenge" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+  # port 4321
+    deploy: *deploy_common
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    container_name: super-revenge-frontend
+    environment:
+      PUBLIC_API_BASE_URL: "http://mission-control-system:3002"
+    restart: unless-stopped
+    networks: [internal]
+    
+  bot:
+    build:
+      context: bot
+      dockerfile: Dockerfile
+    deploy: *deploy_priority
+    # volumes:
+      # - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      PORT: "1337"
+      CF_TURNSTILE_SITE_KEY: "0x4AAAAAACDTKdtLfmiQq8fp"
+      CF_TURNSTILE_SECRET: "0x4AAAAAACDTKehSszBxCRqIYlqJ2TaZZ3o"
+      JWT_SECRET: "0xxx0x4AAAAAACDTKehSszBxCRqIYlqJ2TaZZ3oa"
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "adminxor"
+      ADMIN_NAME: "R2+1P"
+
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:1337/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [internal]
+    ulimits:
+      nofile: { soft: 1024, hard: 2048 }
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+
+
+  mission-control-system:
+    build:
+      context: mission-control-system
+      dockerfile: Dockerfile
+    container_name: mission-control-system
+    deploy: *deploy_common
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: superrevenge
+      DB_PASSWORD: superrevengepass
+      DB_NAME: superrevenge
+      PORT: 3002
+      ENV: development
+      JWT_SECRET: supersecretjwtkey
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_PASSWORD: adminxor
+      ADMIN_NAME: R2+1P
+      FLAG: TCF{Somebody_extremely_clever_enjoying_tech_beyond_intent}
+    networks: [internal]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3002/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgs:
+    driver: local
+
+networks:
+  internal:
+    driver: bridge
+# you dont need to edit this file

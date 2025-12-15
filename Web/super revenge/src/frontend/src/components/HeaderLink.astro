@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'>;
+
+const { href, class: className, ...props } = Astro.props;
+const base = import.meta.env.BASE_URL?.replace(/\/+$/, '') ?? '';
+
+const normalize = (value: string | undefined) => {
+	if (!value) return '/';
+	if (value === '/') return '/';
+	const trimmed = value.replace(base, '').replace(/\/+$/, '').replace(/^\/+/, '');
+	return trimmed ? `/${trimmed}` : '/';
+};
+
+const currentPath = normalize(Astro.url.pathname);
+const targetPath = normalize(typeof href === 'string' ? href : href?.toString());
+
+const isActive =
+	targetPath === currentPath ||
+	(targetPath !== '/' && currentPath.startsWith(`${targetPath}/`));
+---
+
+<a href={href} class:list={[className, { active: isActive }]} {...props}>
+	<slot />
+</a>
+<style>
+	a {
+		display: inline-block;
+		text-decoration: none;
+		font-weight: 600;
+		color: inherit;
+		transition: color 0.2s ease, text-shadow 0.2s ease;
+	}
+	a.active {
+		text-decoration: none;
+		color: #ffe066;
+		text-shadow: 0 0 12px rgba(255, 224, 102, 0.95);
+	}
+	a:focus-visible {
+		outline: 2px dotted #ffe066;
+		outline-offset: 2px;
+	}
+</style>

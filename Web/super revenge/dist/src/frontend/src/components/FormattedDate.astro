@@ -1,0 +1,22 @@
+---
+interface Props {
+	date?: Date | string;
+	locale?: string;
+	options?: Intl.DateTimeFormatOptions;
+}
+
+const {
+	date,
+	locale = 'en-US',
+	options = { year: 'numeric', month: 'short', day: 'numeric' },
+}: Props = Astro.props;
+
+const parsedDate = date ? new Date(date) : null;
+const isValidDate = parsedDate instanceof Date && !Number.isNaN(parsedDate?.valueOf());
+const dateISO = isValidDate ? parsedDate!.toISOString() : null;
+const formattedDate = isValidDate ? parsedDate!.toLocaleDateString(locale, options) : null;
+---
+
+{isValidDate && dateISO && formattedDate ? (
+	<time datetime={dateISO}>{formattedDate}</time>
+) : null}

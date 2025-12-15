@@ -1,0 +1,195 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+
+const { title = 'Note', description = '', pubDate, updatedDate, heroImage } = Astro.props;
+
+const resolveDate = (value: unknown): Date | null => {
+	if (value instanceof Date) return value;
+	if (typeof value === 'string' && value.trim()) {
+		const parsed = new Date(value);
+		return Number.isNaN(parsed.valueOf()) ? null : parsed;
+	}
+	return null;
+};
+
+const publishedDate = resolveDate(pubDate);
+const lastUpdatedDate = resolveDate(updatedDate);
+const showUpdated =
+	lastUpdatedDate &&
+	(!publishedDate || lastUpdatedDate.valueOf() !== publishedDate.valueOf())
+		? lastUpdatedDate
+		: null;
+
+const heroSrc =
+	typeof heroImage === 'string' && heroImage.trim() ? heroImage.trim() : null;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body class="blog-layout">
+		<Header />
+		<main>
+			<article class="post-card">
+				{heroSrc && (
+					<div class="post-card__hero">
+						<Image
+							src={heroSrc}
+							alt={title}
+							width={1280}
+							height={640}
+							loading="lazy"
+						/>
+					</div>
+				)}
+				<section class="post-card__content">
+					<div class="post-card__intro">
+						<span class="post-card__eyebrow">Note</span>
+						<h1>{title}</h1>
+						{description && (
+							<p class="post-card__description">{description}</p>
+						)}
+						<div class="post-card__dates">
+							{publishedDate && (
+								<span class="post-card__date">
+									Published <FormattedDate date={publishedDate} />
+								</span>
+							)}
+							{showUpdated && (
+								<span class="post-card__date post-card__date--muted">
+									Updated <FormattedDate date={showUpdated} />
+								</span>
+							)}
+						</div>
+					</div>
+					<slot />
+					{Astro.slots.has('comments') && (
+						<section class="post-card__comments">
+							<slot name="comments" />
+						</section>
+					)}
+				</section>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+:global(body) {
+	margin: 0;
+	min-height: 100vh;
+	background: #050017;
+	font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+	color: #e6e9ff;
+}
+
+.blog-layout {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex: 1;
+	padding: 3.5rem 1.25rem 4.5rem;
+	display: flex;
+	justify-content: center;
+}
+
+.post-card {
+	width: min(960px, 100%);
+	border-radius: 32px;
+	background: rgba(12, 10, 40, 0.75);
+	border: 1px solid rgba(155, 232, 255, 0.18);
+	box-shadow: 0 30px 70px rgba(8, 4, 35, 0.85);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+.post-card__hero {
+	padding: 2rem;
+	background: linear-gradient(
+		135deg,
+		rgba(10, 8, 46, 0.9),
+		rgba(45, 13, 94, 0.7)
+	);
+}
+
+.post-card__hero img {
+	width: 100%;
+	height: auto;
+	border-radius: 18px;
+	box-shadow: 0 20px 40px rgba(8, 4, 35, 0.65);
+	display: block;
+}
+
+.post-card__content {
+	padding: 2.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.post-card__intro h1 {
+	margin: 0.25rem 0 0;
+	font-size: clamp(2rem, 3vw, 2.75rem);
+	line-height: 1.2;
+	letter-spacing: 0.03em;
+}
+
+.post-card__eyebrow {
+	font-size: 0.85rem;
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
+	color: rgba(155, 232, 255, 0.7);
+}
+
+.post-card__description {
+	margin: 0.75rem 0 0;
+	color: rgba(230, 233, 255, 0.8);
+}
+
+.post-card__dates {
+	display: flex;
+	gap: 1rem;
+	margin-top: 0.75rem;
+	flex-wrap: wrap;
+}
+
+.post-card__date {
+	font-size: 0.95rem;
+	color: rgba(155, 232, 255, 0.9);
+}
+
+.post-card__date--muted {
+	color: rgba(155, 232, 255, 0.55);
+}
+
+.post-card__comments {
+	margin-top: 0.5rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid rgba(155, 232, 255, 0.18);
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+@media (max-width: 720px) {
+	main {
+		padding: 2.5rem 1rem 3.5rem;
+	}
+	.post-card__content {
+		padding: 2rem;
+	}
+	.post-card__hero {
+		padding: 1.5rem;
+	}
+}
+</style>

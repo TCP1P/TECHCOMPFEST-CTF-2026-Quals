@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>yet repl bot</title>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
+  </head>
+  <body
+    class="bg-dark text-white d-flex align-items-center justify-content-center vh-100 persona-bg"
+  >
+    <div class="text-center">
+      <h1 id="personaTitle" class="persona-title mb-4"></h1>
+      <div class="position-relative mb-3">
+        <input
+          type="text"
+          class="form-control mb-0"
+          id="urlInput"
+          style="position: absolute; opacity: 0; z-index: -1"
+          autocomplete="off"
+        />
+        <input
+          type="text"
+          class="form-control persona-fake-input"
+          id="fakeInput"
+          autocomplete="off"
+          placeholder="Enter URL or name..."
+        />
+      </div>
+      <!-- csrf token -->
+      <input type="hidden" id="csrfToken" value="<%= csrfToken %>" />
+      <div class="d-flex flex-column align-items-center gap-2">
+        <% if (turnstileSiteKey) { %>
+          <div
+            class="cf-turnstile"
+            data-sitekey="<%= turnstileSiteKey %>"
+            data-callback="onTurnstileSuccess"
+            data-expired-callback="onTurnstileExpired"
+            data-error-callback="onTurnstileExpired"
+          ></div>
+        <% } %>
+        <button class="btn persona-btn mt-2" id="visitBtn">Visit</button>
+      </div>
+      <div
+        id="statusModal"
+        class="modal fade show"
+        tabindex="-1"
+        style="display: none"
+        aria-modal="true"
+        role="dialog"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content bg-dark text-white border-danger">
+            <div class="modal-header border-bottom border-danger">
+              <h5 class="modal-title text-danger">⚔ x-champloo-loading</h5>
+            </div>
+            <div class="modal-body">
+              <p id="modalStatus">x-champloo-initializing</p>
+              <div class="progress mt-3">
+                <div
+                  id="modalProgressBar"
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                  style="width: 25%"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="persona-note note-bottom-left">
+      <label for="personaNote">📝 Field Notes</label>
+      <p class="persona-note-quote">
+        An übermensch is person who can go beyond good and evil, abandoning traditional moral concepts descended from religious tradition and instead create his own.”
+      </p>
+      <span class="persona-note-author">— übermensch</span>
+    </div>
+
+    <audio id="click-sfx" src="click.mp3"></audio>
+
+    <script src="index.js"></script>
+  </body>
+</html>

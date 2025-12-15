@@ -1,0 +1,137 @@
+---
+const { slug = 'general', notes, submitAction, noteId } = Astro.props;
+const normalizedSlug = slug || 'general';
+const safeComments = Array.isArray(notes) ? notes : [];
+const sanitizedSubmitAction =
+	typeof submitAction === 'string' && submitAction.trim() ? submitAction.trim() : '';
+const numericNoteId =
+	typeof noteId === 'number'
+		? noteId
+		: typeof noteId === 'string'
+			? Number(noteId)
+			: NaN;
+const allowSubmit = Boolean(sanitizedSubmitAction && Number.isFinite(numericNoteId));
+const hasCustomForm = Astro.slots.has('note-form');
+const sectionId = `comments-${normalizedSlug.replace(/[^a-zA-Z0-9_-]/g, '-')}`;
+const commentFormScript = '/scripts/comments-form.js';
+---
+<section id={sectionId} class="comments-layout">
+	<div class="notes-list">
+		{safeComments.length === 0 ? (
+			<p>No comments yet for this note.</p>
+		) : (
+			safeComments.map((comment) => {
+				const text =
+					typeof comment.content === 'string' && comment.content.trim()
+						? comment.content
+						: typeof comment.text === 'string' && comment.text.trim()
+							? comment.text.trim()
+							: 'No content available.';
+				const createdValue =
+					comment.createdAt instanceof Date
+						? comment.createdAt
+						: typeof comment.createdAt === 'string' && comment.createdAt.trim()
+							? new Date(comment.createdAt)
+							: null;
+
+				return (
+					<article class="note-card" data-note-id={comment.id ?? comment.createdAt}>
+						<p>{text}</p>
+						<small>
+							By {comment.author ?? 'anonymous'}
+							{createdValue && !Number.isNaN(createdValue.valueOf()) ? (
+								<>
+									{' '}
+									• {createdValue.toLocaleString()}
+								</>
+							) : null}
+						</small>
+					</article>
+				);
+			})
+		)}
+	</div>
+	<div class="notes-actions">
+		{hasCustomForm ? (
+			<slot name="note-form" />
+		) : allowSubmit ? (
+			<form
+				class="note-form"
+				data-add-note-form
+				data-action={sanitizedSubmitAction}
+				data-note-id={numericNoteId}
+			>
+				<label class="note-form__label">
+					Add a comment
+					<textarea
+						name="content"
+						class="note-form__input"
+						rows="3"
+						required
+						placeholder="Share your thoughts..."
+					/>
+				</label>
+				<button type="submit" class="note-form__submit">Save comment</button>
+				<p class="note-form__status" data-status />
+			</form>
+		) : (
+			<p class="note-form__hint">Sign in with a valid note to add comments.</p>
+		)}
+	</div>
+</section>
+{allowSubmit && !hasCustomForm ? (
+	<script type="module" src={commentFormScript}></script>
+) : null}
+<style>
+.comments-layout {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+.notes-actions {
+	margin-top: 1rem;
+	padding-top: 1rem;
+	border-top: 1px solid rgba(155, 232, 255, 0.2);
+}
+.note-form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+.note-form__label {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	color: rgba(230, 233, 255, 0.85);
+	font-weight: 500;
+}
+.note-form__input {
+	resize: vertical;
+	padding: 0.75rem;
+	border-radius: 0.75rem;
+	border: 1px solid rgba(155, 232, 255, 0.3);
+	background: rgba(5, 0, 23, 0.6);
+	color: #e6e9ff;
+	min-height: 3.5rem;
+}
+.note-form__submit {
+	align-self: flex-start;
+	padding: 0.65rem 1.5rem;
+	border: none;
+	border-radius: 999px;
+	background: linear-gradient(135deg, #ff2d95, #6b50ff);
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+}
+.note-form__submit:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+.note-form__status,
+.note-form__hint {
+	font-size: 0.9rem;
+	color: rgba(155, 232, 255, 0.75);
+	margin: 0;
+}
+</style>

@@ -1,0 +1,342 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+			body {
+				margin: 0;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				background: #050017;
+				color: #e6e9ff;
+				font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+			}
+			main {
+				flex: 1;
+				width: min(1100px, 92%);
+				margin: 0 auto;
+				padding: 4rem clamp(1rem, 5vw, 3rem) 5rem;
+				display: flex;
+				flex-direction: column;
+				gap: 2.5rem;
+			}
+			section {
+				background: rgba(12, 10, 40, 0.82);
+				border: 1px solid rgba(155, 232, 255, 0.18);
+				border-radius: 28px;
+				padding: clamp(1.75rem, 4vw, 2.75rem);
+				box-shadow: 0 25px 65px rgba(8, 4, 35, 0.78);
+			}
+			.hero {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: clamp(1.5rem, 4vw, 3rem);
+				align-items: stretch;
+			}
+			.hero__content {
+				display: flex;
+				flex-direction: column;
+				gap: 1.4rem;
+			}
+			.hero__eyebrow {
+				margin: 0;
+				font-size: 0.85rem;
+				letter-spacing: 0.35em;
+				text-transform: uppercase;
+				color: rgba(155, 232, 255, 0.75);
+			}
+			.hero h1 {
+				margin: 0;
+				font-family: 'Orbitron', 'Segoe UI', sans-serif;
+				font-size: clamp(2.25rem, 5vw, 3.4rem);
+				text-transform: uppercase;
+				color: #ffe066;
+				text-shadow: 0 0 16px rgba(255, 224, 102, 0.75);
+			}
+			.hero__subtitle {
+				margin: 0;
+				max-width: 54ch;
+				color: rgba(230, 233, 255, 0.82);
+				line-height: 1.6;
+			}
+			.hero__actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+			.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.9rem 1.9rem;
+				border-radius: 999px;
+				font-family: 'Orbitron', 'Segoe UI', sans-serif;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				font-weight: 600;
+				text-decoration: none;
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+			.button--primary {
+				background: linear-gradient(135deg, #ff2d95, #ffe066);
+				color: #050017;
+				box-shadow: 0 14px 32px rgba(255, 45, 149, 0.45);
+			}
+			.button--ghost {
+				border: 1px solid rgba(155, 232, 255, 0.45);
+				color: #9be8ff;
+				background: transparent;
+			}
+			.button:hover {
+				transform: translateY(-2px);
+			}
+			.hero__stats {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+				gap: 1rem;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.hero__stats li {
+				padding: 1rem 1.1rem;
+				border-radius: 18px;
+				background: rgba(5, 0, 23, 0.35);
+				border: 1px solid rgba(155, 232, 255, 0.2);
+			}
+			.hero__stats strong {
+				display: block;
+				font-size: 1.4rem;
+				color: #ffe066;
+			}
+			.hero__card {
+				border-radius: 22px;
+				padding: 2rem;
+				background: linear-gradient(135deg, rgba(10, 8, 46, 0.95), rgba(52, 22, 113, 0.85));
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+				display: flex;
+				flex-direction: column;
+				gap: 1.25rem;
+			}
+			.hero__card h2 {
+				margin: 0;
+				font-size: 1rem;
+				letter-spacing: 0.3em;
+				text-transform: uppercase;
+				color: rgba(155, 232, 255, 0.76);
+			}
+			.hero__card ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				gap: 0.85rem;
+			}
+			.hero__card li {
+				display: flex;
+				gap: 0.65rem;
+				align-items: flex-start;
+				color: rgba(230, 233, 255, 0.85);
+			}
+			.hero__card li::before {
+				content: '•';
+				color: #ffe066;
+				font-size: 1.3rem;
+				line-height: 1;
+			}
+			.trust {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+			.trust__logos {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+				gap: 1rem;
+			}
+			.trust__logos span {
+				padding: 0.9rem 1rem;
+				border-radius: 999px;
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				text-align: center;
+				font-family: 'Orbitron', 'Segoe UI', sans-serif;
+				font-size: 0.78rem;
+				text-transform: uppercase;
+				letter-spacing: 0.2em;
+				color: rgba(155, 232, 255, 0.85);
+			}
+			.stat-cards {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				gap: 1.5rem;
+				padding: 0;
+				background: none;
+				border: none;
+				box-shadow: none;
+			}
+			.stat-cards article {
+				padding: 2rem;
+				border-radius: 20px;
+				background: rgba(12, 10, 40, 0.85);
+				border: 1px solid rgba(155, 232, 255, 0.2);
+				box-shadow: 0 18px 48px rgba(8, 4, 35, 0.7);
+			}
+			.stat-value {
+				display: block;
+				font-size: 2rem;
+				font-family: 'Orbitron', 'Segoe UI', sans-serif;
+				color: #ffe066;
+			}
+			.capabilities {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+			}
+			.capabilities__list {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				gap: 1.5rem;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.capabilities__list li {
+				padding: 1.5rem;
+				border-radius: 18px;
+				background: rgba(5, 0, 23, 0.45);
+				border: 1px solid rgba(155, 232, 255, 0.2);
+			}
+			.capabilities__list h3 {
+				margin: 0 0 0.5rem 0;
+				font-family: 'Orbitron', 'Segoe UI', sans-serif;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: #9be8ff;
+				font-size: 0.95rem;
+			}
+			.capabilities__list p {
+				margin: 0;
+				color: rgba(209, 215, 255, 0.8);
+				font-size: 0.95rem;
+			}
+			@media (max-width: 720px) {
+				section {
+					padding: 1.5rem;
+				}
+				.hero__actions {
+					flex-direction: column;
+				}
+				.button {
+					width: 100%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<div class="hero__content">
+					<p class="hero__eyebrow">Mission Control Platform</p>
+					<h1>Super Note</h1>
+					<p class="hero__subtitle">
+						A single source of truth for directives, telemetry, and decision logs—secured and
+						synchronized across every crew.
+					</p>
+					<div class="hero__actions">
+						<a class="button button--primary" href="/signin">Launch Console</a>
+						<a class="button button--ghost" href="/notes/">Explore Notes</a>
+					</div>
+					<ul class="hero__stats">
+						<li>
+							<strong>+320</strong>
+							<span>Active crews</span>
+						</li>
+						<li>
+							<strong>99.9%</strong>
+							<span>Signal uptime</span>
+						</li>
+						<li>
+							<strong>12 TB</strong>
+							<span>Synced archives</span>
+						</li>
+					</ul>
+				</div>
+				<div class="hero__card">
+					<h2>Operational snapshot</h2>
+					<ul>
+						<li>Real-time syncing between Super Note and Mission Control System.</li>
+						<li>Immutable audit trails with per-crew visibility rules.</li>
+						<li>AI-assisted search tuned for mission vernacular.</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="trust">
+				<h2>Trusted by modern ops teams</h2>
+				<div class="trust__logos">
+					<span>Orbital Labs</span>
+					<span>Atlas Flight</span>
+					<span>Nova Relay</span>
+					<span>Argon Systems</span>
+				</div>
+			</section>
+
+			<section class="stat-cards">
+				<article>
+					<span class="stat-value">&lt;45s</span>
+					<p>Average insight retrieval thanks to semantic indexing.</p>
+				</article>
+				<article>
+					<span class="stat-value">24/7</span>
+					<p>Continuity monitoring across every knowledge channel.</p>
+				</article>
+				<article>
+					<span class="stat-value">4.8/5</span>
+					<p>Operational confidence rating from leadership teams.</p>
+				</article>
+			</section>
+
+			<section class="capabilities">
+				<div>
+					<h2>Capabilities built for real missions</h2>
+					<p>
+						From red-team rehearsals to live launches, Super Note stays aligned with the Mission Control
+						System to ensure nothing slips through orbit.
+					</p>
+				</div>
+				<ul class="capabilities__list">
+					<li>
+						<h3>Unified Knowledge Pipeline</h3>
+						<p>Aggregate briefs, telemetry, and annotations into a searchable ledger.</p>
+					</li>
+					<li>
+						<h3>Signal-Strength Search</h3>
+						<p>Surface context instantly with language models tuned for ops chatter.</p>
+					</li>
+					<li>
+						<h3>Flight-Proven Security</h3>
+						<p>Granular roles, zero-trust policies, and tamper-proof histories.</p>
+					</li>
+					<li>
+						<h3>Collaborative Frequencies</h3>
+						<p>Broadcast updates to squads, annotate in real time, and stay synchronized.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
