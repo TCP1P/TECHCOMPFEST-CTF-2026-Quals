@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/gzcli/refs/heads/master/internal/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "http3 0day"
+author: "rep"
+description: |
+  This was an easy challenge isn't?, you don't even need the source code to solve it. Here's the binary instead. Good luck! but it doesnt matter anyway because it is 10/10 same.
+  
+  http://{{.host}}/{{.slug}}
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{1ts_just_b4ddD0cs_ex4mpl3_F0r_http3}"
+
+
+provide: "./dist/server"
+
+scripts:
+    start: cd src && docker compose -p {{.slug}} up --build -d
+    stop: cd src && docker compose -p {{.slug}} down --volumes
+    restart:
+      interval: 15m
+      execute: cd src && docker compose -p {{.slug}} restart

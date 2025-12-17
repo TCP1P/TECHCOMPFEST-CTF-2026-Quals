@@ -1,0 +1,31 @@
+version: "3.9"
+
+x-deploy-priority: &deploy_priority
+  restart_policy:
+    condition: on-failure
+  resources:
+    limits:
+      cpus: "2.0"
+      memory: 4G
+    reservations:
+      cpus: "2.0"
+      memory: 3G
+  update_config:
+    parallelism: 1
+    order: start-first
+
+services:
+  server:
+    deploy: *deploy_priority
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        EXAMPLE_NAME: server
+    ports:
+      - "4433:4433"
+      - "4433:4433/udp"
+    volumes:
+      - ./h3/content/root:/app/h3/content/root:ro
+      - ./flag.txt:/how_you_did_get_h3r3_br00h.txt:ro
+    restart: unless-stopped
