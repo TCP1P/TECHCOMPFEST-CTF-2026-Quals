@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/ctfify/refs/heads/master/function/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "exifdition-33"
+author: "azuketto"
+description: |
+  AND THE EMPLOYEE OF THE MONTH IS.....
+  EXPEDITION 33!!!!!
+
+  {{ .host }} 8303
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{https://youtu.be/I8HYN3WsuOQ?si=vYoKZsTBRICyxiuL}"
+
+provide: "./dist"
+
+scripts:
+  start: cd ./src && docker compose up --build --detach
+  stop: cd ./src && docker compose down --volumes

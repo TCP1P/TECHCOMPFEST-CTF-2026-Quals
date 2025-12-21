@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/ctfify/refs/heads/master/function/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "teio-step"
+author: "azuketto"
+description: |
+  uma pyoi uma pyoi uma pyoi uma pyoi
+
+  {{ .host }} 8301
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{dokidokidokidoki...KIMINOAIBAGA!}"
+
+provide: "./dist"
+
+scripts:
+  start: cd ./src && docker compose up --build --detach
+  stop: cd ./src && docker compose down --volumes

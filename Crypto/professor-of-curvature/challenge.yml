@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/ctfify/refs/heads/master/function/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "professor-of-curvature"
+author: "azuketto"
+description: |
+  harikitteeeeee ikouuuuuU!!!!
+
+  {{ .host }} 8302
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{https://youtu.be/0JcPvIuSRf0?si=LMIui_BGtle02vOz}"
+
+provide: "./dist"
+
+scripts:
+  start: cd ./src && docker compose up --build --detach
+  stop: cd ./src && docker compose down --volumes

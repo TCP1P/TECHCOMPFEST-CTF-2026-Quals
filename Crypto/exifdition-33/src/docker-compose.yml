@@ -1,0 +1,10 @@
+version: '1'
+name: 'exifdition-33'
+services:
+  read-around:
+    build: .
+    restart: on-failure
+    container_name: 'exifdition-33'
+    read_only: false
+    ports:
+      - 8303:8010

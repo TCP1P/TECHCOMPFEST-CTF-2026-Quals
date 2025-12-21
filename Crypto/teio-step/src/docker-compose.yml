@@ -1,0 +1,10 @@
+version: '1'
+name: 'teio-step'
+services:
+  read-around:
+    build: .
+    restart: on-failure
+    container_name: 'teio-step'
+    read_only: true
+    ports:
+      - 8301:8010
