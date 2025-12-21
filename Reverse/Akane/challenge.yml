@@ -1,0 +1,18 @@
+# This file represents the base specification of your challenge. It is used by
+# other tools to install and deploy your challenge.
+
+name: "Akane"
+author: "aimardcr"
+description: | 
+  https://github.com/aimardcr/Akane
+
+type: "StaticAttachment"
+
+flags:
+  - "TCF{yes-there-is-no-backdoor-just-a-simple-reversing}"
+
+value: 1000
+
+scripts:
+    start: cd src && docker compose -p {{.slug}} up -d
+    stop: cd src && docker compose -p {{.slug}} down --volumes

@@ -1,0 +1,15 @@
+# This file represents the base specification of your challenge. It is used by
+# other tools to install and deploy your challenge.
+
+name: "Allocated"
+author: "aimardcr"
+description: | 
+  (stat|dynam)ic reversing is fun, right?
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{1tS_Ju5t_B4siC_R3ve3rS1nG_Br00}"
+
+provide: "./dist"
