@@ -1,5 +1,5 @@
 ### PoC
-(just skip the ad1 chunk fixing part, its not really needed)
+(no need to fix ad1 chunk/header)
 
 Refferences:
 1. https://stackoverflow.com/questions/9050260/what-does-a-zlib-header-look-like
