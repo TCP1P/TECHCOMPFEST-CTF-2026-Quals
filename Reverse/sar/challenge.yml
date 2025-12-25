@@ -1,0 +1,15 @@
+# This file represents the base specification of your challenge. It is used by
+# other tools to install and deploy your challenge.
+
+name: "sar"
+author: "hanzceo"
+description: | 
+  Osaka; full-word input enclosed in TCF{0x...} as flag; you can do this
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{0x8040201008040201008040201008040201008040201008040201008040201008}"
+
+provide: "./dist"
