@@ -1,0 +1,9 @@
+services:
+  httpwn:
+    container_name: httpwn_container
+    hostname: httpwn
+    restart: always
+    build:
+      context: .
+    ports:
+      - 16000:8000 
