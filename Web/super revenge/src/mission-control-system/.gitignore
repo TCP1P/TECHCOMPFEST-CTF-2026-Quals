@@ -13,6 +13,6 @@ go.work.sum
 .qodo
 tmp/
 
-.env
+# .env
 
 .DS_Store
