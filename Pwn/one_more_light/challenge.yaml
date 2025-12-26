@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/ctfify/refs/heads/master/function/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "one-more-light"
+author: "crypiktemep"
+description: |
+  oh you think you can just solve this?
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{owww_n1c333_u_s0lv3_th1s_but_th3r3_is_0ne_m0r3_th1ng_y0u_have_to_d0}"
+
+provide: "./dist"
+
+dashboard:
+  type: compose
+  config: ./src/docker-compose.yaml

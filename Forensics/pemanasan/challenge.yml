@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/ctfify/refs/heads/master/function/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "pemanasan"
+author: "crypiktemep"
+description: |
+  "Cisco Packet Tracer adalah perangkat lunak simulasi jaringan gratis dari Cisco Systems yang memungkinkan pengguna membuat, mengonfigurasi, dan menguji topologi jaringan virtual secara interaktif, berguna untuk belajar konsep jaringan, persiapan sertifikasi (seperti CCNA), serta simulasi skenario jaringan kompleks tanpa perlu perangkat keras fisik yang mahal. Alat ini menyediakan visualisasi pergerakan data dan antarmuka drag-and-drop untuk membangun jaringan dengan router, switch, PC, server, dan perangkat lain, menjadikannya media pembelajaran praktis yang populer di kalangan pelajar dan profesional IT."
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{75444f2ce78cda7dcc9d9af2cc935ae00fd3ed410a781832000e0ba4a3783948}"
+
+provide: "./dist"

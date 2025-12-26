@@ -5,7 +5,7 @@ author: "rep"
 description: |
   This was an easy challenge isn't?, you don't even need the source code to solve it. Here's the binary instead. Good luck! but it doesnt matter anyway because it is 10/10 same.
   
-  https://gzcli.{{.host}}/{{.slug}}
+  http://{{.host}}/{{.slug}}
 
 type: "StaticAttachment"
 value: 1000
@@ -16,6 +16,9 @@ flags:
 
 provide: "./dist/server"
 
-dashboard:
-  type: compose
-  config: ./src/docker-compose.yaml
+scripts:
+    start: cd src && docker compose -p {{.slug}} up --build -d
+    stop: cd src && docker compose -p {{.slug}} down --volumes
+    restart:
+      interval: 15m
+      execute: cd src && docker compose -p {{.slug}} restart

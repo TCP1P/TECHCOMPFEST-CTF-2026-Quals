@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/ctfify/refs/heads/master/function/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "keycheck"
+author: "crypiktemep"
+description: |
+  think about it, how can people crack Windows XP license so easily?
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{plszz_jangan_pake_windwos_bajakan_kasian_mbah_gates}"
+
+provide: "./dist"
+
+dashboard:
+  type: compose
+  config: ./src/docker-compose.yaml

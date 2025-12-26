@@ -1,0 +1,24 @@
+services:
+  one-more-light:
+    build: .
+    ports:
+      - "11002:11002"
+    restart: unless-stopped
+
+    volumes:
+      - ./flag.txt:/app/flag.txt:ro
+      - ./0hhh_wow_how_u_do_that.txt:/app/0hhh_wow_how_u_do_that.txt:ro
+
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 128M
