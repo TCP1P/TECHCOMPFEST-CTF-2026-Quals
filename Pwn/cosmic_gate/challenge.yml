@@ -45,7 +45,7 @@ type: "StaticAttachment"
 value: 1000
 
 flags:
-  - "TCF{don't forget to pre-register and check out arknights endfield on january 22 2026 https://endfield.gryphline.com/landing/ua/pre-registration}"
+  - "TCF{don't forget to pre-register and check out Arknights: Endfield on january 22 2026 at https://endfield.gryphline.com}"
 
 provide: "./dist/cosmic_gate.zip"
 
