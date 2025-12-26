@@ -1,0 +1,19 @@
+name: "3ampwn"
+author: "rui"
+description: |
+  "sijachwuiauhsdhwajhdajshdacuueb" - my brain
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TCF{maybe_this_one_more_tuff_compared_to_another_heap}"
+
+provide: "./dist/dist.zip"
+
+scripts:
+    start: cd src && docker compose -p {{.slug}} up --build -d
+    stop: cd src && docker compose -p {{.slug}} down --volumes
+    restart:
+      interval: 15m
+      execute: cd src && docker compose -p {{.slug}} restart

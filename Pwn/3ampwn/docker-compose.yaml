@@ -1,0 +1,12 @@
+services:
+  3ampwn:
+    build: .
+    ports:
+    - 16001:8000
+    entrypoint: /etc/init.sh
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
