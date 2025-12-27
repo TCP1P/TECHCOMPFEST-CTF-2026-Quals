@@ -1,0 +1,219 @@
+networks:
+  internal:
+    driver: bridge
+services:
+  bot:
+    build:
+      context: bot
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4G
+        reservations:
+          cpus: "2.0"
+          memory: 3G
+      restart_policy:
+        condition: on-failure
+      update_config:
+        order: start-first
+        parallelism: 1
+    environment:
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_NAME: R2+1P
+      ADMIN_PASSWORD: adminxor
+      CF_TURNSTILE_SECRET: 0x4AAAAAACDTKehSszBxCRqIYlqJ2TaZZ3o
+      CF_TURNSTILE_SITE_KEY: 0x4AAAAAACDTKdtLfmiQq8fp
+      JWT_SECRET: 0xxx0x4AAAAAACDTKehSszBxCRqIYlqJ2TaZZ3oa
+      PORT: "1337"
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+      - CMD-SHELL
+      - curl -f http://localhost:1337/health || exit 1
+      timeout: 5s
+    networks:
+    - internal
+    restart: unless-stopped
+    security_opt:
+    - no-new-privileges:true
+    tmpfs:
+    - /tmp:size=64m,mode=1777
+    ulimits:
+      nofile:
+        hard: 2048
+        soft: 1024
+  db:
+    container_name: super-revenge-db
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+        reservations:
+          cpus: "0.50"
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+      update_config:
+        order: start-first
+        parallelism: 1
+    environment:
+      POSTGRES_DB: superrevenge
+      POSTGRES_PASSWORD: superrevengepass
+      POSTGRES_USER: superrevenge
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+      - CMD-SHELL
+      - pg_isready -U superrevenge -d superrevenge
+      timeout: 5s
+    image: postgres:16-alpine
+    networks:
+    - internal
+    restart: unless-stopped
+    volumes:
+    - pgs:/var/lib/postgresql/data
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    container_name: super-revenge-frontend
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+        reservations:
+          cpus: "0.50"
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+      update_config:
+        order: start-first
+        parallelism: 1
+    environment:
+      PUBLIC_API_BASE_URL: http://mission-control-system:3002
+    networks:
+    - internal
+    restart: unless-stopped
+  mission-control-system:
+    build:
+      context: mission-control-system
+      dockerfile: Dockerfile
+    container_name: mission-control-system
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+        reservations:
+          cpus: "0.50"
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+      update_config:
+        order: start-first
+        parallelism: 1
+    environment:
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_NAME: R2+1P
+      ADMIN_PASSWORD: adminxor
+      DB_HOST: db
+      DB_NAME: superrevenge
+      DB_PASSWORD: superrevengepass
+      DB_PORT: 5432
+      DB_USER: superrevenge
+      ENV: development
+      FLAG: TCF{Somebody_extremely_clever_enjoying_tech_beyond_intent}
+      JWT_SECRET: supersecretjwtkey
+      PORT: 3002
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+      - CMD-SHELL
+      - curl -f http://localhost:3002/health || exit 1
+      timeout: 5s
+    networks:
+    - internal
+    restart: unless-stopped
+  proxy:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    depends_on:
+    - bot
+    - frontend
+    - mission-control-system
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+        reservations:
+          cpus: "0.50"
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+      update_config:
+        order: start-first
+        parallelism: 1
+    healthcheck:
+      interval: 2s
+      retries: 3
+      start_period: 0s
+      test:
+      - CMD
+      - curl
+      - -fsS
+      - http://127.0.0.1:1889/
+      timeout: 3s
+    networks:
+    - internal
+    ports:
+    - 34178:2937
+    security_opt:
+    - no-new-privileges:true
+    tmpfs:
+    - /tmp:size=64m,mode=1777
+    ulimits:
+      nofile:
+        hard: 2048
+        soft: 1024
+version: "3.8"
+volumes:
+  pgs:
+    driver: local
+x-deploy-common:
+  resources:
+    limits:
+      cpus: "1.0"
+      memory: 256M
+    reservations:
+      cpus: "0.50"
+      memory: 128M
+  restart_policy:
+    condition: on-failure
+  update_config:
+    order: start-first
+    parallelism: 1
+x-deploy-priority:
+  resources:
+    limits:
+      cpus: "2.0"
+      memory: 4G
+    reservations:
+      cpus: "2.0"
+      memory: 3G
+  restart_policy:
+    condition: on-failure
+  update_config:
+    order: start-first
+    parallelism: 1

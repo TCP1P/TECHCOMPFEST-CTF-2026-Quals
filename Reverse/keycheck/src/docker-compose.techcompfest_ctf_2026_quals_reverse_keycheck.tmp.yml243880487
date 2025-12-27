@@ -1,0 +1,15 @@
+services:
+  keycheck:
+    build: .
+    cap_drop:
+    - ALL
+    ports:
+    - 36646:11001
+    read_only: true
+    restart: unless-stopped
+    security_opt:
+    - no-new-privileges:true
+    tmpfs:
+    - /tmp
+    volumes:
+    - ./flag.txt:/app/flag.txt:ro
