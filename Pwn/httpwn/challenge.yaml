@@ -3,7 +3,7 @@ author: "rui"
 description: |
   turn your browser on and type this ip, and welcome to browser pwn.... wait its not v8 i swear
 
-  http://{{.host}}/{{.slug}}
+  http://gzcli.{{.host}}/{{.slug}}
 
 type: "StaticAttachment"
 value: 1000
@@ -14,9 +14,6 @@ flags:
 
 provide: "./dist/dist.zip"
 
-scripts:
-    start: cd src && docker compose -p {{.slug}} up --build -d
-    stop: cd src && docker compose -p {{.slug}} down --volumes
-    restart:
-      interval: 15m
-      execute: cd src && docker compose -p {{.slug}} restart
+dashboard:
+  type: compose
+  config: ./docker-compose.yml
