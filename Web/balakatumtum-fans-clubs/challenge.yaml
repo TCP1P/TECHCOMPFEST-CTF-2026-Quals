@@ -15,4 +15,4 @@ flags:
 
 dashboard:
   type: compose
-  config: ./src/docker-compose.yaml
+  config: ./src/docker-compose.yml
