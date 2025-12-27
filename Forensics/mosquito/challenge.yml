@@ -9,6 +9,6 @@ type: "StaticAttachment"
 value: 1000
 
 flags:
-  - "TCF{kata_masfir_bosen_ransomware_00efdd8bcd}"
+  - "TCF{00efcad114_kata_masfir_bosen_ransomware_00efdd8bcd}"
 
 provide: "./dist"
