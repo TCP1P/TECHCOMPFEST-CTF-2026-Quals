@@ -6,6 +6,8 @@ author: "aimardcr"
 description: | 
   https://github.com/aimardcr/Akane
 
+  https://gzcli.{{.host}}/{{.slug}}
+
 type: "StaticAttachment"
 
 flags:
@@ -16,3 +18,7 @@ value: 1000
 scripts:
     start: cd src && docker compose -p {{.slug}} up -d
     stop: cd src && docker compose -p {{.slug}} down --volumes
+
+dashboard:
+  type: compose
+  config: ./src/docker-compose.yml
