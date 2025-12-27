@@ -5,6 +5,8 @@ author: "crypiktemep"
 description: |
   think about it, how can people crack Windows XP license so easily?
 
+  http://gzcli.{{.host}}/{{.slug}}
+
 type: "StaticAttachment"
 value: 1000
 

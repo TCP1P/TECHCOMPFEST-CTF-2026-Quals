@@ -4,6 +4,8 @@ name: "one-more-light"
 author: "crypiktemep"
 description: |
   oh you think you can just solve this?
+  
+  http://gzcli.{{.host}}/{{.slug}}
 
 type: "StaticAttachment"
 value: 1000
