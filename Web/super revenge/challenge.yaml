@@ -5,7 +5,7 @@ author: "repl"
 description: |
   yea, another note challenge. but this time it has super thing you need todo to obtain the flag. because it has super strict csp, super strict authentication and super strict api-call. Welcome to super notes
 
-  https://gzcli.{{.host}}/{{.slug}}
+  https://{{.host}}/{{.slug}}
 
 type: "StaticAttachment"
 value: 1000

@@ -6,7 +6,7 @@ description: |
   AND THE EMPLOYEE OF THE MONTH IS.....
   EXPEDITION 33!!!!!
 
-  {{ .host }} 8303
+  https://{{.host}}/{{.slug}}
 
 type: "StaticAttachment"
 value: 1000
@@ -16,6 +16,6 @@ flags:
 
 provide: "./dist"
 
-scripts:
-  start: cd ./src && docker compose up --build --detach
-  stop: cd ./src && docker compose down --volumes
+dashboard:
+  type: compose
+  config: ./src/docker-compose.yaml
