@@ -1,0 +1,19 @@
+name: Balakatumtum Fans Clubs
+author: dimas
+description: 'Be freaky!
+
+
+  https://gzcli.{{.host}}/{{.slug}}
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Web/balakatumtum-fans-clubs).'
+type: StaticAttachment
+category: Web
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flags:
+- TCF{react2rce_bypass_cloudflare_127441280883260}
+provide: dist

@@ -1,0 +1,5 @@
+Balakatumtum Fans Clubs
+
+Original source: https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Web/balakatumtum-fans-clubs
+
+Local archive note: no player attachment files were present.

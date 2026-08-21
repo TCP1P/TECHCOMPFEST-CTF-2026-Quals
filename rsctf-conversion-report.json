@@ -1,0 +1,158 @@
+{
+  "sourceRepository": "TCP1P/TECHCOMPFEST-CTF-2026-Quals",
+  "targetRepository": "TCP1P/TECHCOMPFEST-CTF-2026-Quals",
+  "private": false,
+  "events": [
+    "TECHCOMPFEST CTF 2026 — Qualifiers"
+  ],
+  "challenges": [
+    {
+      "name": "exifdition-33",
+      "category": "Crypto",
+      "source": "Crypto/exifdition-33/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Crypto/exifdition-33",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Crypto/exifdition-33/challenge.yaml"
+    },
+    {
+      "name": "teio-step",
+      "category": "Crypto",
+      "source": "Crypto/teio-step/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Crypto/teio-step",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Crypto/teio-step/challenge.yaml"
+    },
+    {
+      "name": "minami",
+      "category": "Forensics",
+      "source": "Forensics/minami/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Forensics/minami",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Forensics/minami/challenge.yaml"
+    },
+    {
+      "name": "mosquito",
+      "category": "Forensics",
+      "source": "Forensics/mosquito/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Forensics/mosquito",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Forensics/mosquito/challenge.yaml"
+    },
+    {
+      "name": "pemanasan",
+      "category": "Forensics",
+      "source": "Forensics/pemanasan/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Forensics/pemanasan",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Forensics/pemanasan/challenge.yaml"
+    },
+    {
+      "name": "3ampwn",
+      "category": "Pwn",
+      "source": "Pwn/3ampwn/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Pwn/3ampwn",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Pwn/3ampwn/challenge.yaml"
+    },
+    {
+      "name": "Cosmic Gate",
+      "category": "Pwn",
+      "source": "Pwn/cosmic_gate/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Pwn/cosmic_gate",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Pwn/cosmic-gate/challenge.yaml"
+    },
+    {
+      "name": "httpwn",
+      "category": "Pwn",
+      "source": "Pwn/httpwn/challenge.yaml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Pwn/httpwn",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Pwn/httpwn/challenge.yaml"
+    },
+    {
+      "name": "one-more-light",
+      "category": "Pwn",
+      "source": "Pwn/one_more_light/challenge.yaml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Pwn/one_more_light",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Pwn/one-more-light/challenge.yaml"
+    },
+    {
+      "name": "Akane",
+      "category": "Reverse",
+      "source": "Reverse/Akane/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/Akane",
+      "type": "StaticAttachment",
+      "warnings": [
+        "no player attachment files were present"
+      ],
+      "manifest": "Jeopardy/Reverse/akane/challenge.yaml"
+    },
+    {
+      "name": "Allocated",
+      "category": "Reverse",
+      "source": "Reverse/Allocated/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/Allocated",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Reverse/allocated/challenge.yaml"
+    },
+    {
+      "name": "keycheck",
+      "category": "Reverse",
+      "source": "Reverse/keycheck/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/keycheck",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Reverse/keycheck/challenge.yaml"
+    },
+    {
+      "name": "sar",
+      "category": "Reverse",
+      "source": "Reverse/sar/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/sar",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Reverse/sar/challenge.yaml"
+    },
+    {
+      "name": "Balakatumtum Fans Clubs",
+      "category": "Web",
+      "source": "Web/balakatumtum-fans-clubs/challenge.yaml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Web/balakatumtum-fans-clubs",
+      "type": "StaticAttachment",
+      "warnings": [
+        "no player attachment files were present"
+      ],
+      "manifest": "Jeopardy/Web/balakatumtum-fans-clubs/challenge.yaml"
+    },
+    {
+      "name": "http3 0day",
+      "category": "Web",
+      "source": "Web/http3 0day/challenge.yaml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Web/http3%200day",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Web/http3-0day/challenge.yaml"
+    },
+    {
+      "name": "super-revenge",
+      "category": "Web",
+      "source": "Web/super revenge/challenge.yaml",
+      "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Web/super%20revenge",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "Jeopardy/Web/super-revenge/challenge.yaml"
+    }
+  ]
+}

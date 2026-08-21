@@ -1,0 +1,19 @@
+name: super-revenge
+author: repl
+description: 'yea, another note challenge. but this time it has super thing you need todo to obtain the flag. because it has super strict csp, super strict authentication and super strict api-call. Welcome to super notes
+
+
+  https://{{.host}}/{{.slug}}
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Web/super%20revenge).'
+type: StaticAttachment
+category: Web
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flags:
+- TCF{Somebody_extremely_clever_enjoying_tech_beyond_intent}
+provide: dist

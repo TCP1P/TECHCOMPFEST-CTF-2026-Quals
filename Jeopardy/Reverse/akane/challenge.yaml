@@ -1,0 +1,19 @@
+name: Akane
+author: aimardcr
+description: 'https://github.com/aimardcr/Akane
+
+
+  https://gzcli.{{.host}}/{{.slug}}
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/Akane).'
+type: StaticAttachment
+category: Reverse
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flags:
+- TCF{yes-there-is-no-backdoor-just-a-simple-reversing}
+provide: dist

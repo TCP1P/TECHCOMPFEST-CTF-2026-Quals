@@ -1,0 +1,16 @@
+name: mosquito
+author: keii
+description: '<img src="https://ctf.korpstar-poltekssn.org/files/979abb386398633229b89dd5b20622cc/desc.png" alt="desc" />
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Forensics/mosquito).'
+type: StaticAttachment
+category: Forensics
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flags:
+- TCF{00efcad114_kata_masfir_bosen_ransomware_00efdd8bcd}
+provide: dist

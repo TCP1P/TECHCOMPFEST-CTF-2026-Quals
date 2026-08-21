@@ -1,0 +1,16 @@
+name: Allocated
+author: aimardcr
+description: '(stat|dynam)ic reversing is fun, right?
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/Allocated).'
+type: StaticAttachment
+category: Reverse
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flags:
+- TCF{1tS_Ju5t_B4siC_R3ve3rS1nG_Br00}
+provide: dist

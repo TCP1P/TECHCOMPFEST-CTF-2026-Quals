@@ -1,0 +1,21 @@
+name: exifdition-33
+author: azuketto
+description: 'AND THE EMPLOYEE OF THE MONTH IS.....
+
+  EXPEDITION 33!!!!!
+
+
+  https://{{.host}}/{{.slug}}
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Crypto/exifdition-33).'
+type: StaticAttachment
+category: Crypto
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flags:
+- TCF{https://youtu.be/I8HYN3WsuOQ?si=vYoKZsTBRICyxiuL}
+provide: dist

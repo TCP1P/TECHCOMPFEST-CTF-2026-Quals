@@ -1,0 +1,16 @@
+name: pemanasan
+author: crypiktemep
+description: '"Cisco Packet Tracer adalah perangkat lunak simulasi jaringan gratis dari Cisco Systems yang memungkinkan pengguna membuat, mengonfigurasi, dan menguji topologi jaringan virtual secara interaktif, berguna untuk belajar konsep jaringan, persiapan sertifikasi (seperti CCNA), serta simulasi skenario jaringan kompleks tanpa perlu perangkat keras fisik yang mahal. Alat ini menyediakan visualisasi pergerakan data dan antarmuka drag-and-drop untuk membangun jaringan dengan router, switch, PC, server, dan perangkat lain, menjadikannya media pembelajaran praktis yang populer di kalangan pelajar dan profesional IT."
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Forensics/pemanasan).'
+type: StaticAttachment
+category: Forensics
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flags:
+- TCF{75444f2ce78cda7dcc9d9af2cc935ae00fd3ed410a781832000e0ba4a3783948}
+provide: dist
