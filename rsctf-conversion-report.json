@@ -11,18 +11,30 @@
       "category": "Crypto",
       "source": "Crypto/exifdition-33/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Crypto/exifdition-33",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "Jeopardy/Crypto/exifdition-33/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'TCF{exifdition_33___________________[TEAM_HASH]}'",
+        "dynamic flag delivery uses the EXIF comment adapter",
+        "dynamic runtime compatibility rewrote 0 archived flag occurrence(s)"
+      ],
+      "manifest": "Jeopardy/Crypto/exifdition-33-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "teio-step",
       "category": "Crypto",
       "source": "Crypto/teio-step/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Crypto/teio-step",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "Jeopardy/Crypto/teio-step/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'TCF{teio_step_______[TEAM_HASH]}'",
+        "dynamic flag delivery proven through archived full flag literal",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
+      ],
+      "manifest": "Jeopardy/Crypto/teio-step-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "minami",
@@ -30,6 +42,7 @@
       "source": "Forensics/minami/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Forensics/minami",
       "type": "StaticAttachment",
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
       "warnings": [],
       "manifest": "Jeopardy/Forensics/minami/challenge.yaml"
     },
@@ -39,6 +52,7 @@
       "source": "Forensics/mosquito/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Forensics/mosquito",
       "type": "StaticAttachment",
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
       "warnings": [],
       "manifest": "Jeopardy/Forensics/mosquito/challenge.yaml"
     },
@@ -48,6 +62,7 @@
       "source": "Forensics/pemanasan/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Forensics/pemanasan",
       "type": "StaticAttachment",
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
       "warnings": [],
       "manifest": "Jeopardy/Forensics/pemanasan/challenge.yaml"
     },
@@ -56,47 +71,75 @@
       "category": "Pwn",
       "source": "Pwn/3ampwn/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Pwn/3ampwn",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "Jeopardy/Pwn/3ampwn/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'TCF{3ampwn___________________________[TEAM_HASH]}'",
+        "dynamic flag delivery proven through archived wrapped-flag payload",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
+      ],
+      "manifest": "Jeopardy/Pwn/3ampwn-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "Cosmic Gate",
       "category": "Pwn",
       "source": "Pwn/cosmic_gate/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Pwn/cosmic_gate",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "Jeopardy/Pwn/cosmic-gate/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'TCF{cosmic_gate________________________________________________________________________________________[TEAM_HASH]}'",
+        "dynamic flag delivery proven through archived full flag literal",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
+      ],
+      "manifest": "Jeopardy/Pwn/cosmic-gate-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "httpwn",
       "category": "Pwn",
       "source": "Pwn/httpwn/challenge.yaml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Pwn/httpwn",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "Jeopardy/Pwn/httpwn/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'TCF{httpwn_______________________________[TEAM_HASH]}'",
+        "dynamic flag delivery proven through archived wrapped-flag payload",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
+      ],
+      "manifest": "Jeopardy/Pwn/httpwn-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "one-more-light",
       "category": "Pwn",
       "source": "Pwn/one_more_light/challenge.yaml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Pwn/one_more_light",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "Jeopardy/Pwn/one-more-light/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'TCF{one_more_light_____________________________________[TEAM_HASH]}'",
+        "dynamic flag delivery uses the split flag file adapter",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
+      ],
+      "manifest": "Jeopardy/Pwn/one-more-light-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "Akane",
       "category": "Reverse",
       "source": "Reverse/Akane/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/Akane",
-      "type": "StaticAttachment",
+      "type": "DynamicContainer",
+      "runtimeReason": null,
       "warnings": [
-        "no player attachment files were present"
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'TCF{akane___________________________[TEAM_HASH]}'",
+        "dynamic flag delivery proven through archived full flag literal",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
       ],
-      "manifest": "Jeopardy/Reverse/akane/challenge.yaml"
+      "manifest": "Jeopardy/Reverse/akane-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "Allocated",
@@ -104,6 +147,7 @@
       "source": "Reverse/Allocated/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/Allocated",
       "type": "StaticAttachment",
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
       "warnings": [],
       "manifest": "Jeopardy/Reverse/allocated/challenge.yaml"
     },
@@ -112,9 +156,15 @@
       "category": "Reverse",
       "source": "Reverse/keycheck/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/keycheck",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "Jeopardy/Reverse/keycheck/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'TCF{keycheck___________________________[TEAM_HASH]}'",
+        "dynamic flag delivery uses the legacy Compose flag file adapter",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
+      ],
+      "manifest": "Jeopardy/Reverse/keycheck-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "sar",
@@ -122,6 +172,7 @@
       "source": "Reverse/sar/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/sar",
       "type": "StaticAttachment",
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
       "warnings": [],
       "manifest": "Jeopardy/Reverse/sar/challenge.yaml"
     },
@@ -131,6 +182,7 @@
       "source": "Web/balakatumtum-fans-clubs/challenge.yaml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Web/balakatumtum-fans-clubs",
       "type": "StaticAttachment",
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
       "warnings": [
         "no player attachment files were present"
       ],
@@ -141,9 +193,15 @@
       "category": "Web",
       "source": "Web/http3 0day/challenge.yaml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Web/http3%200day",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "Jeopardy/Web/http3-0day/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'TCF{http3_0day_________[TEAM_HASH]}'",
+        "dynamic flag delivery uses the legacy Compose flag file adapter",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
+      ],
+      "manifest": "Jeopardy/Web/http3-0day-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "super-revenge",
@@ -151,6 +209,7 @@
       "source": "Web/super revenge/challenge.yaml",
       "sourceUrl": "https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Web/super%20revenge",
       "type": "StaticAttachment",
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
       "warnings": [],
       "manifest": "Jeopardy/Web/super-revenge/challenge.yaml"
     }

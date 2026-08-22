@@ -1,0 +1,22 @@
+name: Akane
+author: aimardcr
+description: 'https://github.com/aimardcr/Akane
+
+
+  https://gzcli.{{.host}}/{{.slug}}
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/Akane).'
+type: DynamicContainer
+category: Reverse
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flagTemplate: TCF{akane___________________________[TEAM_HASH]}
+container:
+  memoryLimit: 128
+  cpuCount: 1
+  exposePort: 5000
+  enableTrafficCapture: false

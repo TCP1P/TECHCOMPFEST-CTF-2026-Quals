@@ -1,5 +1,0 @@
-Akane
-
-Original source: https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Reverse/Akane
-
-Local archive note: no player attachment files were present.

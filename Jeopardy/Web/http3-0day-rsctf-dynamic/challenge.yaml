@@ -1,0 +1,22 @@
+name: http3 0day
+author: rep
+description: 'This was an easy challenge isn''t?, you don''t even need the source code to solve it. Here''s the binary instead. Good luck! but it doesnt matter anyway because it is 10/10 same.
+
+
+  http://gzcli.{{.host}}/{{.slug}}
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/TECHCOMPFEST-CTF-2026-Quals/tree/main/Web/http3%200day).'
+type: DynamicContainer
+category: Web
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flagTemplate: TCF{http3_0day_________[TEAM_HASH]}
+container:
+  memoryLimit: 128
+  cpuCount: 1
+  exposePort: 4433
+  enableTrafficCapture: false
