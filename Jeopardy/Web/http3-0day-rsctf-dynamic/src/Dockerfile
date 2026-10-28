@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.6
 
-ARG RUST_VERSION=1.83
+ARG RUST_VERSION=1.88
 ARG EXAMPLE_NAME=server
 
 FROM rust:${RUST_VERSION}-slim AS builder
